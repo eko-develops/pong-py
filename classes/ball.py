@@ -45,6 +45,10 @@ class Ball(pygame.sprite.Sprite):
 
         self.rect.center = (self.x_pos, self.y_pos)
 
+    def reset_update(self, pong):
+        self.x_pos = pong.screen_rect.width // 2
+        self.y_pos = pong.screen_rect.height // 2
+
     def handle_paddle_hit(self, paddle_hit_list):
         for _ in paddle_hit_list:
             self.y_dir = self.y_dir * -1

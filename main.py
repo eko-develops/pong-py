@@ -25,10 +25,17 @@ def main():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
+                    """Pause game"""
                     if pong.paused is True:
                         pong.paused = False
                     else:
                         pong.paused = True
+                if event.key == pygame.K_r:
+                    """Reset game"""
+                    pong.ball.reset_update(pong)
+                    for paddle in sprite_list:
+                        paddle.reset_update(pong)
+                    sprite_list.draw(pong.screen)
 
         if pong.paused is True:
             pong.draw_pause()

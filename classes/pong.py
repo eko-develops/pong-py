@@ -34,9 +34,20 @@ class Pong:
 
     def draw_pause(self):
         text = self.font.render("Press SPACE to START/PAUSE", True, self.font_colour)
+        restart_text = self.font.render(
+            "Press R at any time to RESTART", True, self.font_colour
+        )
+        restart_text_rect = restart_text.get_rect()
+        restart_text_rect.center = (
+            self.screen_rect.width // 2,
+            (self.screen_rect.height // 2) + 50,
+        )
+
         text_rect = text.get_rect()
         text_rect.center = (
             self.screen_rect.width // 2,
             (self.screen_rect.height // 2) - 50,
         )
+
+        self.screen.blit(restart_text, restart_text_rect)
         self.screen.blit(text, text_rect)

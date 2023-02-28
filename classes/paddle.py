@@ -30,3 +30,7 @@ class Paddle(pygame.sprite.Sprite):
             self.x_pos = 0 + (self.width // 2)
 
         self.rect.center = (self.x_pos, self.y_pos)
+
+    def reset_update(self, pong):
+        self.x_pos = pong.screen_rect.width // 2
+        self.rect.center = (self.x_pos, self.y_pos)
