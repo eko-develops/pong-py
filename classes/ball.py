@@ -8,9 +8,12 @@ class Ball(pygame.sprite.Sprite):
         self.speed = 10
         self.size = size
         self.colour = (255, 255, 255)
+        self.just_spawned = True
 
     def draw(self, surface):
         pygame.draw.circle(surface, self.colour, (self.x_pos, self.y_pos), self.size)
 
     def update(self):
-        self.x_pos += self.speed
+        if self.just_spawned is True:
+            self.y_pos += self.speed
+            self.just_spawned = False

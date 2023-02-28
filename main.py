@@ -2,18 +2,13 @@ import sys
 
 import pygame
 
-from classes.ball import Ball
-
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-FRAMERATE = 30
+from classes.pong import Pong
 
 
 def main():
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    clock = pygame.time.Clock()
-
-    ball = Ball(100, 100, 20)
+    pong = Pong()
+    screen = pong.screen
+    ball = pong.ball
 
     while True:
         screen.fill((10, 10, 10))
@@ -26,8 +21,8 @@ def main():
         ball.draw(screen)
         ball.update()
 
-        pygame.display.update()
-        clock.tick(FRAMERATE)
+        pong.update()
+        pong.tick()
 
 
 main()
