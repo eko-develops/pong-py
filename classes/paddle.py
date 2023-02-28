@@ -1,19 +1,20 @@
 import pygame
 
 
-class Paddle:
+class Paddle(pygame.sprite.Sprite):
     def __init__(self, x_pos, y_pos):
+        pygame.sprite.Sprite.__init__(self)
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.width = 100
         self.height = 20
         self.colour = (255, 255, 255)
 
-        self.rect = pygame.Rect(self.x_pos, self.y_pos, self.width, self.height)
-        self.rect.center = (self.x_pos, self.y_pos)
+        self.image = pygame.Surface((self.width, self.height))
+        self.image.fill(self.colour)
 
-    def draw(self, screen):
-        pygame.draw.rect(screen, self.colour, self.rect)
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.x_pos, self.y_pos)
 
     def update(self, pong):
         x_mouse_pos = pygame.mouse.get_pos()[0]

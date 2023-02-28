@@ -11,6 +11,9 @@ def main():
     player = Player(pong.screen_rect.width // 2, pong.screen_rect.height - 100)
     computer = Computer(pong.screen_rect.width // 2, 0 + 100)
 
+    sprite_list = pygame.sprite.Group()
+    sprite_list.add(player.paddle, computer.paddle, pong.ball)
+
     while True:
         pong.draw_bg()
 
@@ -19,11 +22,9 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        player.paddle.update(pong)
-        pong.ball.update()
+        sprite_list.update(pong)
+        sprite_list.draw(pong.screen)
 
-        player.paddle.draw(pong.screen)
-        computer.paddle.draw(pong.screen)
         pong.ball.draw(pong.screen)
 
         pong.update()

@@ -15,7 +15,7 @@ class Pong:
         self.clock = pygame.time.Clock()
         self.framerate = 30
 
-        self.ball = Ball(self, self.screen_width // 2, self.screen_height // 2, 20)
+        self.ball = Ball(self.screen_width // 2, self.screen_height // 2, 20)
 
     def update(self):
         pygame.display.update()

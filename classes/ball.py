@@ -2,8 +2,8 @@ import pygame
 
 
 class Ball(pygame.sprite.Sprite):
-    def __init__(self, pong, x_pos, y_pos, size):
-        self.pong = pong
+    def __init__(self, x_pos, y_pos, size):
+        pygame.sprite.Sprite.__init__(self)
         self.x_pos = x_pos
         self.x_dir = 1
         self.y_pos = y_pos
@@ -11,14 +11,21 @@ class Ball(pygame.sprite.Sprite):
         self.speed = 10
         self.size = size
         self.colour = (255, 255, 255)
+
+        self.image = pygame.Surface((self.size, self.size))
+        self.image.fill(self.colour)
+
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.x_pos, self.y_pos)
+
         self.just_spawned = True
 
-    def draw(self, surface):
-        pygame.draw.circle(surface, self.colour, (self.x_pos, self.y_pos), self.size)
+    def draw(self, screen):
+        pygame.draw.circle(screen, self.colour, (self.x_pos, self.y_pos), self.size)
 
-    def update(self):
-        max_height = self.pong.screen_rect.height
-        max_width = self.pong.screen_rect.width
+    def update(self, pong):
+        max_height = pong.screen_rect.height
+        max_width = pong.screen_rect.width
 
         if self.just_spawned is True:
             self.y_pos = self.y_pos + (self.y_dir * self.speed)
@@ -35,3 +42,5 @@ class Ball(pygame.sprite.Sprite):
 
         self.x_pos = self.x_pos + (self.x_dir * self.speed)
         self.y_pos = self.y_pos + (self.y_dir * self.speed)
+
+        self.rect.center = (self.x_pos, self.y_pos)
