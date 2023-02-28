@@ -14,7 +14,7 @@ def main():
     computer = Computer(pong.screen_rect.width // 2, 0 + 100)
 
     sprite_list = pygame.sprite.Group()
-    sprite_list.add(player.paddle, computer.paddle, pong.ball)
+    sprite_list.add(player.paddle, computer.paddle)
 
     while True:
         pong.draw_bg()
@@ -33,7 +33,11 @@ def main():
         if pong.paused is True:
             pong.draw_pause()
         else:
+            paddle_hit_list = pygame.sprite.spritecollide(pong.ball, sprite_list, False)
+            pong.ball.handle_paddle_hit(paddle_hit_list)
+
             sprite_list.update(pong)
+            pong.ball.update(pong)
 
         sprite_list.draw(pong.screen)
         pong.ball.draw(pong.screen)
