@@ -8,7 +8,7 @@ class Ball(pygame.sprite.Sprite):
         self.x_dir = 1
         self.y_pos = y_pos
         self.y_dir = 1
-        self.speed = 10
+        self.speed = 5
         self.size = size
         self.colour = (255, 255, 255)
 

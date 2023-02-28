@@ -43,6 +43,14 @@ def main():
             paddle_hit_list = pygame.sprite.spritecollide(pong.ball, sprite_list, False)
             pong.ball.handle_paddle_hit(paddle_hit_list)
 
+            """Level up every n seconds"""
+            current_time = pygame.time.get_ticks()
+            seconds = 10
+            level_up_ms = seconds * 1000
+            if current_time - pong.last_update >= level_up_ms and pong.ball.speed <= 20:
+                pong.ball.speed += 1
+                pong.last_update = current_time
+
             sprite_list.update(pong)
             pong.ball.update(pong)
 

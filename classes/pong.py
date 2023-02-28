@@ -17,11 +17,12 @@ class Pong:
         self.bg_colour = (0, 0, 0)
 
         self.clock = pygame.time.Clock()
-        self.framerate = 30
+        self.framerate = 60
 
         self.ball = Ball(self.screen_width // 2, self.screen_height // 2, 20)
 
         self.paused = True
+        self.last_update = pygame.time.get_ticks()
 
     def update(self):
         pygame.display.update()
