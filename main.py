@@ -3,12 +3,13 @@ import sys
 import pygame
 
 from classes.pong import Pong
-from classes.player import Player
+from classes.player import Player, Computer
 
 
 def main():
     pong = Pong()
     player = Player(pong.screen_rect.width // 2, pong.screen_rect.height - 100)
+    computer = Computer(pong.screen_rect.width // 2, 0 + 100)
 
     screen = pong.screen
     ball = pong.ball
@@ -22,6 +23,7 @@ def main():
                 sys.exit()
 
         player.paddle.draw(screen)
+        computer.paddle.draw(screen)
 
         ball.draw(screen)
         ball.update()
