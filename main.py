@@ -11,22 +11,19 @@ def main():
     player = Player(pong.screen_rect.width // 2, pong.screen_rect.height - 100)
     computer = Computer(pong.screen_rect.width // 2, 0 + 100)
 
-    screen = pong.screen
-    ball = pong.ball
-
     while True:
-        screen.fill((10, 10, 10))
+        pong.screen.fill((10, 10, 10))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
                 sys.exit()
 
-        player.paddle.draw(screen)
-        computer.paddle.draw(screen)
+        player.paddle.draw(pong.screen)
+        computer.paddle.draw(pong.screen)
 
-        ball.draw(screen)
-        ball.update()
+        pong.ball.draw(pong.screen)
+        pong.ball.update()
 
         pong.update()
         pong.tick()

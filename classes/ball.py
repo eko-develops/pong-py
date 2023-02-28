@@ -19,7 +19,7 @@ class Ball(pygame.sprite.Sprite):
     def update(self):
         max_height = self.pong.screen_rect.height
         max_width = self.pong.screen_rect.width
-        print((self.x_pos, self.y_pos))
+
         if self.just_spawned is True:
             self.y_pos = self.y_pos + (self.y_dir * self.speed)
             self.x_pos = self.x_pos + (self.x_dir * self.speed)
