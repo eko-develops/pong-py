@@ -17,12 +17,14 @@ class Paddle:
 
     def update(self, pong):
         x_mouse_pos = pygame.mouse.get_pos()[0]
-        max_width = pong.screen_rect.width
+        screen_max_width = pong.screen_rect.width
         self.x_pos = x_mouse_pos
 
-        if (self.x_pos + self.width // 2) >= max_width:
-            self.x_pos = max_width - (self.width // 2)
+        """Pad if paddle hitting right"""
+        if (self.x_pos + self.width // 2) >= screen_max_width:
+            self.x_pos = screen_max_width - (self.width // 2)
 
+        """Pad if paddle hitting left"""
         if (self.x_pos - self.width // 2) <= 0:
             self.x_pos = 0 + (self.width // 2)
 
