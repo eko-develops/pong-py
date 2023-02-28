@@ -12,7 +12,7 @@ def main():
     computer = Computer(pong.screen_rect.width // 2, 0 + 100)
 
     while True:
-        pong.screen.fill((10, 10, 10))
+        pong.draw_bg()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

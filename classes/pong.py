@@ -22,3 +22,6 @@ class Pong:
 
     def tick(self):
         self.clock.tick(self.framerate)
+
+    def draw_bg(self):
+        self.screen.fill((10, 10, 10))
