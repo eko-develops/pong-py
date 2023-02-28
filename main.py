@@ -19,11 +19,12 @@ def main():
                 pygame.QUIT()
                 sys.exit()
 
+        player.paddle.update(pong)
+        pong.ball.update()
+
         player.paddle.draw(pong.screen)
         computer.paddle.draw(pong.screen)
-
         pong.ball.draw(pong.screen)
-        pong.ball.update()
 
         pong.update()
         pong.tick()

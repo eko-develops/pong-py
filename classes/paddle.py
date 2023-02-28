@@ -14,3 +14,16 @@ class Paddle:
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.colour, self.rect)
+
+    def update(self, pong):
+        x_mouse_pos = pygame.mouse.get_pos()[0]
+        max_width = pong.screen_rect.width
+        self.x_pos = x_mouse_pos
+
+        if (self.x_pos + self.width // 2) >= max_width:
+            self.x_pos = max_width - (self.width // 2)
+
+        if (self.x_pos - self.width // 2) <= 0:
+            self.x_pos = 0 + (self.width // 2)
+
+        self.rect.center = (self.x_pos, self.y_pos)
