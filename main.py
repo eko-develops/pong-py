@@ -5,6 +5,8 @@ import pygame
 from classes.pong import Pong
 from classes.player import Player, Computer
 
+pygame.init()
+
 
 def main():
     pong = Pong()
@@ -21,10 +23,19 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if pong.paused is True:
+                        pong.paused = False
+                    else:
+                        pong.paused = True
 
-        sprite_list.update(pong)
+        if pong.paused is True:
+            pong.draw_pause()
+        else:
+            sprite_list.update(pong)
+
         sprite_list.draw(pong.screen)
-
         pong.ball.draw(pong.screen)
 
         pong.update()
