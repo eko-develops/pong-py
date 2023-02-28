@@ -16,7 +16,7 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.QUIT()
+                pygame.quit()
                 sys.exit()
 
         player.paddle.update(pong)
