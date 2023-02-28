@@ -10,8 +10,10 @@ pygame.init()
 
 def main():
     pong = Pong()
-    player = Player(pong.screen_rect.width // 2, pong.screen_rect.height - 100)
-    computer = Computer(pong.screen_rect.width // 2, 0 + 100)
+    # player = Player(pong.screen_rect.width // 2, pong.screen_rect.height - 100)
+    player = Player(pong)
+    # computer = Computer(pong.screen_rect.width // 2, 0 + 100)
+    computer = Computer(pong)
 
     sprite_list = pygame.sprite.Group()
     sprite_list.add(player.paddle, computer.paddle)
@@ -56,6 +58,9 @@ def main():
 
         sprite_list.draw(pong.screen)
         pong.ball.draw(pong.screen)
+
+        for sprite in (player, computer):
+            sprite.draw_player_board()
 
         pong.update()
         pong.tick()
