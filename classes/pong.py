@@ -22,13 +22,18 @@ class Pong:
         self.ball = Ball(self.screen_width // 2, self.screen_height // 2, 20)
 
         self.paused = True
-        self.last_update = pygame.time.get_ticks()
+        self.scored = False
+        self.last_update = self.get_time()
+        self.pause_time = 0
 
     def update(self):
         pygame.display.update()
 
     def tick(self):
         self.clock.tick(self.framerate)
+
+    def get_time(self):
+        return pygame.time.get_ticks()
 
     def draw_bg(self):
         self.screen.fill(self.bg_colour)
@@ -52,3 +57,24 @@ class Pong:
 
         self.screen.blit(restart_text, restart_text_rect)
         self.screen.blit(text, text_rect)
+
+    def draw_level(self):
+        text = self.font.render(f"Level {self.ball.speed - 4}", True, self.font_colour)
+        text_rect = text.get_rect()
+        text_rect.center = (self.screen_rect.width - 100, self.screen_rect.height // 2)
+
+        self.screen.blit(text, text_rect)
+
+    def reset_scored(self):
+        self.ball.reset_update(self)
+        self.scored = False
+        self.last_update = self.get_time()
+        self.pause_time = 0
+
+    def reset_game(self, paddles_list):
+        self.ball.reset_update(self)
+        for paddle in paddles_list:
+            paddle.reset_update(self)
+        self.scored = False
+        self.last_update = self.get_time()
+        self.pause_time = 0

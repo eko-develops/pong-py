@@ -8,7 +8,8 @@ class Ball(pygame.sprite.Sprite):
         self.x_dir = 1
         self.y_pos = y_pos
         self.y_dir = 1
-        self.speed = 5
+        self.default_speed = 5
+        self.speed = self.default_speed
         self.size = size
         self.colour = (255, 255, 255)
 
@@ -23,7 +24,7 @@ class Ball(pygame.sprite.Sprite):
     def draw(self, screen):
         pygame.draw.circle(screen, self.colour, (self.x_pos, self.y_pos), self.size)
 
-    def update(self, pong):
+    def update(self, pong, player, computer):
         max_height = pong.screen_rect.height
         max_width = pong.screen_rect.width
 
@@ -36,9 +37,11 @@ class Ball(pygame.sprite.Sprite):
         elif self.x_pos - self.size <= 0:
             self.x_dir = 1
         elif self.y_pos + self.size >= max_height:
-            self.y_dir = -1
+            computer.score += 1
+            pong.scored = True
         elif self.y_pos - self.size <= 0:
-            self.y_dir = 1
+            player.score += 1
+            pong.scored = True
 
         self.x_pos = self.x_pos + (self.x_dir * self.speed)
         self.y_pos = self.y_pos + (self.y_dir * self.speed)
@@ -48,6 +51,7 @@ class Ball(pygame.sprite.Sprite):
     def reset_update(self, pong):
         self.x_pos = pong.screen_rect.width // 2
         self.y_pos = pong.screen_rect.height // 2
+        self.speed = self.default_speed
 
     def handle_paddle_hit(self, paddle_hit_list):
         for _ in paddle_hit_list:

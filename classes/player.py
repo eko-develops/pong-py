@@ -12,7 +12,7 @@ class Player:
 
     def draw_player_board(self):
         player_name_text = self.pong.font.render(
-            f"{self.name}", True, self.pong.font_colour
+            f"{self.name}: {self.score}", True, self.pong.font_colour
         )
         board_y = self.get_board_y()
         self.pong.screen.blit(player_name_text, (self.x_pos, board_y))
