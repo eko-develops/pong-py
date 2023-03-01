@@ -41,7 +41,17 @@ def main():
                     sprite_list.draw(pong.screen)
 
         if pong.paused is False:
+            """Handle controls with arrow keys"""
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LEFT]:
+                player.paddle.x_pos -= 10
+                computer.paddle.x_pos -= 10
+            if keys[pygame.K_RIGHT]:
+                player.paddle.x_pos += 10
+                computer.paddle.x_pos += 10
+
             current_time = pong.get_time()
+
             if pong.scored is True:
                 pong.reset_scored()
                 sprite_list.draw(pong.screen)
@@ -68,7 +78,6 @@ def main():
 
         else:
             """Game paused"""
-            # pong.pause_time = pong.get_time() - pong.pause_time
             pong.draw_pause()
 
         sprite_list.draw(pong.screen)

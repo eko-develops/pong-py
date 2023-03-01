@@ -17,9 +17,7 @@ class Paddle(pygame.sprite.Sprite):
         self.rect.center = (self.x_pos, self.y_pos)
 
     def update(self, pong):
-        x_mouse_pos = pygame.mouse.get_pos()[0]
         screen_max_width = pong.screen_rect.width
-        self.x_pos = x_mouse_pos
 
         """Pad if paddle hitting right"""
         if (self.x_pos + self.width // 2) >= screen_max_width:
